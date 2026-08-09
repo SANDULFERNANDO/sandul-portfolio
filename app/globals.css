@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F7F4EF;
+  --fg: #111111;
+  --muted: #666666;
+  --card-bg: #FFFFFF;
+  --card-border: rgba(0, 0, 0, 0.06);
+  --pill-bg: #EDEAE4;
+  --pill-text: #333333;
+  --nav-bg: rgba(247, 244, 239, 0.65);
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04);
+  --font-inter: 'Inter', sans-serif;
+  --font-orbitron: 'Orbitron', sans-serif;
+}
+
+.dark {
+  --bg: #111111;
+  --fg: #F7F4EF;
+  --muted: #888888;
+  --card-bg: #1A1A1A;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --pill-bg: #2A2A2A;
+  --pill-text: #D0CCC4;
+  --nav-bg: rgba(17, 17, 17, 0.65);
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  overflow-y: auto !important; /* prevent Spline scroll hijack */
+}
+
+/* ─── Orbitron display font utility ─── */
+.font-orbitron {
+  font-family: var(--font-orbitron), sans-serif;
+}
+
+/* ─── Display / Section Titles — Orbitron ─── */
+.display-title {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.section-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* ─── Navigation ─── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
+  transition: background 0.3s ease;
+}
+
+/* ─── Cards ─── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.dark .card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ─── Skill Pills ─── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* ─── Section spacing ─── */
+.section {
+  padding: 7rem 0;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── Divider ─── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--card-border);
+}
+
+/* ─── Metric chips ─── */
+.metric-chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ─── Contact form ─── */
+.form-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  color: var(--fg);
+  font-size: 1rem;
+  font-family: var(--font-inter), sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--fg);
+  box-shadow: 0 0 0 3px rgba(17,17,17,0.06);
+}
+
+.dark .form-input:focus {
+  box-shadow: 0 0 0 3px rgba(247,244,239,0.08);
+}
+
+.form-input::placeholder {
+  color: var(--muted);
+}
+
+/* ─── Animations ─── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── Number tag on project cards ─── */
+.project-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+/* ─── Timeline / Experience list ─── */
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.timeline-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ─── Submit button ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-inter), sans-serif;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 9999px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
